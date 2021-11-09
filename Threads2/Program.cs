@@ -6,16 +6,6 @@ namespace Threads2
     internal class Program
     {
 
-        static void T300To600()
-        {
-            for (int i = 3001; i < 6000; i++)
-            {
-                sum += i;
-            }
-        }
-
-
-
         static long Sum0To300()
         {
             long sum = 0;
