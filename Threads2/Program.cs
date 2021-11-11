@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 
 namespace Threads2
@@ -36,11 +37,22 @@ namespace Threads2
             long sum1 = 0, sum2 = 0;
 
             //We are rturning values from thread1 (into sum 1) and thread2 (into sum2)
-            Thread thread1 = new Thread(() => { sum1 = Sum0To300(); });
+            Thread thread1 = new Thread(() => {
+                sum1 = Sum0To300();
+                Console.WriteLine(Thread.CurrentThread.Name);
+                Debug.WriteLine(Thread.CurrentThread.ManagedThreadId);
+                Thread.Sleep(3000) ;
+            
+            });
             Thread thread2 = new Thread(() => { sum2 = Sum300To600(); });
+
+            thread1.Name = "First thread";
 
             thread2.Start();
             thread1.Start();
+
+            Console.WriteLine("mashhu");
+
 
             // Wait for thread1/thread2 to finish it's job and terminate, meanwhile current thread is waiting
             // If we don't wait the results of (sum1 + sum2) are not expected, since it may print before the calculation of summ 1 or while it is still calculating
@@ -48,6 +60,9 @@ namespace Threads2
             thread2.Join();
 
             Console.WriteLine("Sum = " + sum1 + sum2);
+
+       
+
         }
     }
 }

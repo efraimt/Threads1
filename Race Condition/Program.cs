@@ -50,6 +50,7 @@ namespace Threads2
             {
 
                 AddToSum(i);
+                //sum += i;
             }
         }
 
@@ -61,7 +62,8 @@ namespace Threads2
         {
             for (int i = 3001; i < 6000; i++)
             {
-                sum += i;
+                AddToSum(i);
+                //sum += i;
             }
         }
 
